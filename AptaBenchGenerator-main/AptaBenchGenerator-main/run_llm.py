@@ -2,12 +2,25 @@ import sys
 sys.path.append('aptamer_model')
 from src.llm_generator import LLMGenerator
 import pandas as pd
+import os
+from dotenv import load_dotenv
 
-# Ваш API-ключ
-api_key = "AIzaSyDiV5pHf-3tXrYMH8edV8DQxtNUkYmz8lE"
+# Загрузка переменных из .env файла
+load_dotenv()
 
-# Инициализация генератора
-generator = LLMGenerator(api_key)
+# Получение API-ключа из переменной окружения
+api_key = os.getenv('GEMINI_API_KEY')
+if not api_key:
+    raise ValueError("GEMINI_API_KEY не найден в переменных окружения. Установите его в .env файле или переменной окружения.")
+
+# Выбор prompt: 1 - старый, 2 - новый (с ограничениями)
+prompt_choice = input("Выберите prompt: 1 (старый) или 2 (новый с ограничениями): ").strip()
+if prompt_choice not in ['1', '2']:
+    print("Неверный выбор, используем 1.")
+    prompt_choice = '1'
+
+# Инициализация генератора с выбором prompt
+generator = LLMGenerator(api_key, prompt_version=int(prompt_choice))
 
 # Генерация и оценка: 10 последовательностей в 3 итерациях
 best_sequences = generator.generate_and_evaluate(num_sequences=10, iterations=3)
@@ -24,7 +37,7 @@ all_results = generator.evaluate_sequences(all_sequences)  # Оцениваем 
 
 if all_results:
     import os
-    file_path = 'all_generated_aptamers.csv'
+    file_path = 'all_generated_aptamers_v2.csv' if prompt_choice == '2' else 'all_generated_aptamers.csv'
     file_exists = os.path.isfile(file_path)
     
     # Создаем DataFrame со всеми
@@ -37,7 +50,7 @@ if all_results:
         'proba': probas,
         'label': labels,
         'origin': ['LLM_generated'] * len(sequences),
-        'source': ['Gemini_AptaBench'] * len(sequences)
+        'source': ['Gemini_AptaBench_v2' if prompt_choice == '2' else 'Gemini_AptaBench'] * len(sequences)
     }
     df = pd.DataFrame(data)
     

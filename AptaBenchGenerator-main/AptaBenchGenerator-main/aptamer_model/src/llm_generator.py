@@ -6,14 +6,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.predictor import AptamerLigandPredictor
 
 class LLMGenerator:
-    def __init__(self, api_key, target_smiles="Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O"):
+    def __init__(self, api_key, target_smiles="Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O", prompt_version=1):
         self.client = genai.Client(api_key=api_key)
         self.predictor = AptamerLigandPredictor()
         self.target_smiles = target_smiles
         self.examples = []  # Для few-shot learning
+        self.prompt_version = prompt_version
 
     def generate_sequences(self, num_sequences=10, max_length=50):
-        prompt = f"""
+        if self.prompt_version == 1:
+            prompt = f"""
         Generate {num_sequences} unique DNA or RNA aptamer sequences (using A, C, G, T/U) that could bind to the molecule with SMILES: {self.target_smiles}.
         Each sequence should be between 20-100 nucleotides long.
         Aptamers are short DNA or RNA molecules that fold into specific 3D structures to bind targets.
@@ -24,6 +26,21 @@ class LLMGenerator:
 
         Output only the sequences, one per line, no extra text.
         """
+        elif self.prompt_version == 2:
+            prompt = f"""
+        Generate {num_sequences} unique DNA or RNA aptamer sequences (using A, C, G, T/U) that could bind to the molecule with SMILES: {self.target_smiles}.
+        Each sequence should be between 20-80 nucleotides long, with GC content around 40-70%, and diverse motifs (avoid long repeats like GGG... or AAA..., aim for balanced nucleotide distribution).
+        Aptamers are short DNA or RNA molecules that fold into specific 3D structures to bind targets.
+
+        Examples of good aptamers:
+        - GGGAGAATTCCCGCGGCAGAAGCCCACCTGGCTTTGAACTCTATGTTATTGGGTGGGGGAAACTTAAGAAAACTACCACCCTTCAACATTACCGCCCTTCAGCCTGCCAGCGCCCTGCAGCCCGGGAAGCTT
+        - GGGAAGGGAAGAAACUGCGGCUUCGGCCGGCUUCCC
+
+        Output only the sequences, one per line, no extra text.
+        """
+        else:
+            raise ValueError("Invalid prompt_version. Use 1 or 2.")
+
         if self.examples:
             prompt += "\nPreviously successful examples:\n" + "\n".join(self.examples[:5])  # Топ 5
 
@@ -54,7 +71,7 @@ class LLMGenerator:
 
 # Пример использования
 if __name__ == "__main__":
-    api_key = "AIzaSyDiV5pHf-3tXrYMH8edV8DQxtNUkYmz8lE"
-    generator = LLMGenerator(api_key)
+    api_key = "AIzaSyBGZi2TGNeBAgUswjr-sq3TI9RfH-0y4SI"
+    generator = LLMGenerator(api_key, prompt_version=1)  # Или 2 для нового prompt
     best = generator.generate_and_evaluate(num_sequences=5, iterations=2)
     print("Best sequences:", best)
