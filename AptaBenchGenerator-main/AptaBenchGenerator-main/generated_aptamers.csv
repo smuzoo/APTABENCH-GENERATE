@@ -1,0 +1,10 @@
+sequence,canonical_smiles,label,origin,source
+ATACCAGCTTATTCAATTGGGGGGTAGGGGGGTTGGGGGGTAGGGGGGTACCAGCTTATTCAATT,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+GGGTGGGGAGTGGGGGGGTGGGGTGGGG,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+TAGCTAGCGCATCGATCGTACGTAGCTAGCTAGCTAGCGCTAGCTAGCATCGATCGTACGTAGCTAGCTAGCTAGC,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+CCCGACGTCGACGTCGACGTCGACGTCGACGTCGACCC,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+ATGCATGCGGGTGGGTGGGTGGGTGGGTGGGCATGCATGC,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+GGGGCGGGCGGGGCGGGCGGGTTTAAACCCGGG,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+AGCCAGCCAGCCGTCGTCGTCAGCCAGCCAGCCGTCGTCGTC,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+CAGTCCGTAGTACGGCATCGTACGTACGTCAGTCCGTAGTACGGCATCGTACG,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
+GGGTGGGTGGGTGGGTGGGTTTTTGGGTGGGTGGGTGGGTGGG,Nc1c(S(=O)(=O)O)cc(Nc2ccc(Nc3nc(Cl)nc(Nc4ccccc4S(=O)(=O)O)n3)c(S(=O)(=O)O)c2)c2c1C(=O)c1ccccc1C2=O,1,LLM_generated,Gemini_AptaBench
