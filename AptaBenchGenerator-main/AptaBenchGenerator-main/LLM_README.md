@@ -72,3 +72,24 @@ if self.examples:
 - **Validation**: Add checks for sequence validity (e.g., no invalid bases).
 
 For advanced RL, consider integrating with libraries like Stable Baselines or custom fine-tuning on Gemini.
+
+---
+
+## Notes on model behavior
+
+### 1) Evaluator is “optimistic” on random sequences
+When running the predictor on completely random A/C/G/T sequences, the LightGBM model
+still returns **high probabilities** (often >0.8 or >0.9). This means the model is biased
+in favor of many inputs and does not behave like a crisp "good vs bad" classifier.
+
+### 2) What tends to get a low score (label=0)
+In practice, the model gives low probability to sequences that are:
+- very long (>>50) and/or
+- contain long runs of the same base (e.g., long stretches of `GGG...` or `AAA...`) and/or
+- are highly repetitive (repeating motifs)
+
+### 3) How to interpret outputs
+Because the model is not calibrated as a true probability estimator, it is safest to:
+- treat `proba` as a **relative score**, not an absolute confidence
+- use a high threshold (e.g., 0.8 or 0.9) if you want to select "strong" candidates
+- compare generated sequences to known positives (e.g., from `AptaBench_dataset_v2.csv`) if possible
