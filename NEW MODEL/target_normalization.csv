@@ -1,0 +1,7 @@
+target_name_raw,target_name_normalized,target_class,is_primary_for_project,is_counter_target,notes
+glyphosate,glyphosate,primary_herbicide,yes,no,project primary target
+N-(phosphonomethyl)glycine,glyphosate,primary_herbicide,yes,no,synonym mapped to glyphosate
+AMPA,ampa,metabolite_countertarget,no,yes,major glyphosate degradation product
+glufosinate,glufosinate,herbicide_countertarget,no,yes,related herbicide counter-target
+glycine,glycine,small_molecule_countertarget,no,yes,specificity control in KR201 and Chergui
+alanine,alanine,small_molecule_countertarget,no,yes,specificity control in Chergui

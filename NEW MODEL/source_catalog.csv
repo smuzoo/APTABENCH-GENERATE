@@ -1,0 +1,4 @@
+source_id,source_type,title,year,jurisdiction,doi_or_patent_number,url,notes
+src_chergui2021,journal_article,The generation and evolutionary study of novel aptamers for environmental contaminants,2021,journal,10.26686/wgtn.17148626,,N60 published regions extracted from table; Kd from fluorometric GO-assisted assay
+src_kr101338520b1,patent,KR101338520B1: Aptamer specifically binding to glyphosate and uses thereof,2013/2014 era (grant KR101338520B1),KR,KR101338520B1,,26 claimed DNA aptamers; no direct Kd constants; specificity context includes AMPA and glufosinate; G15 selected as lead
+src_kr20180054018a,patent,KR20180054018A: Glyphosate specific aptamer and use thereof,2018,KR,KR20180054018A,,"8 DNA aptamers with SPR Kd for glyphosate, AMPA, and glycine; Gly8 is reported as lead"
